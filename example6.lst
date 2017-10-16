@@ -1,0 +1,130 @@
+Microsoft (R) Macro Assembler Version 14.11.25507.1	    10/14/17 23:02:03
+example.asm						     Page 1 - 1
+
+
+				; Example assembly language program -- adds two numbers
+				; Author:  R. Detmer
+				; Date:    1/2008
+
+				.586
+				.MODEL FLAT
+
+				INCLUDE io.h            ; header file for input/output
+			      C ; IO.H -- header file for I/O macros (listing suppressed)
+			      C .NOLIST      ; turn off listing
+			      C .LIST        ; begin listing
+			      C 
+
+				.STACK 4096
+
+ 00000000			.DATA
+				;value DWORD ?
+				;COUNT BYTE ?
+
+ 00000000 0A			bval BYTE 10
+
+ 00000001 00CE			wval WORD 206
+
+ 00000003 000003F6		dwval DWORD 1014
+
+ 00000000			.CODE
+ 00000000			_MainProc PROC
+ 00000000  B0 EC		        mov AL, -20
+ 00000002  B2 19				mov dl, 25
+ 00000004  B7 FF				mov bh, 0ffh
+ 00000006  8A D8				mov bl, al
+						
+					
+ 00000008  A0 00000000 R			mov al, bval
+ 0000000D  C6 05 00000000 R			mov bval, 1101b
+	   0D
+ 00000014  A2 00000000 R			mov bval, al
+ 00000019  88 2D 00000000 R			mov bval, ch
+
+ 0000001F  66| B8 FF37				mov ax, -201
+ 00000023  66| BA 00FE				mov dx, 254
+ 00000027  66| BB 00FF				mov bx, 0ffh
+ 0000002B  66| 8B D8				mov bx, ax
+ 0000002E  66| A1				mov ax, wval
+	   00000001 R
+ 00000034  66| C7 05				mov wval, 110101b
+	   00000001 R
+	   0035
+ 0000003D  66| A3				mov wval, ax
+	   00000001 R
+ 00000043  66| 89 0D				mov wval, cx
+	   00000001 R
+						
+
+ 0000004A  B8 FFFFFEC0				mov eax, -320
+ 0000004F  BA 000001A9				mov edx, 425
+ 00000054  BB 000000FF				mov ebx, 0ffh
+ 00000059  8B C8				mov ecx, eax
+ 0000005B  A1 00000003 R			mov eax, dwval
+ 00000060  A3 00000003 R			mov dwval, eax
+ 00000065  89 0D 00000003 R			mov dwval, ecx
+				      
+ 0000006B  C3			        ret
+ 0000006C			_MainProc ENDP
+				END                             ; end of source code
+
+Microsoft (R) Macro Assembler Version 14.11.25507.1	    10/14/17 23:02:03
+example.asm						     Symbols 2 - 1
+
+
+
+
+Macros:
+
+                N a m e                 Type
+
+atod . . . . . . . . . . . . . .	Proc
+atow . . . . . . . . . . . . . .	Proc
+dtoa . . . . . . . . . . . . . .	Proc
+input  . . . . . . . . . . . . .	Proc
+output . . . . . . . . . . . . .	Proc
+wtoa . . . . . . . . . . . . . .	Proc
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000007 Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 0000006C Para	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+_MainProc  . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 0000006C Public
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000000h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+_getInput  . . . . . . . . . . .	L Near	 00000000 FLAT	External
+_showOutput  . . . . . . . . . .	L Near	 00000000 FLAT	External
+atodproc . . . . . . . . . . . .	L Near	 00000000 FLAT	External
+atowproc . . . . . . . . . . . .	L Near	 00000000 FLAT	External
+bval . . . . . . . . . . . . . .	Byte	 00000000 _DATA	
+dtoaproc . . . . . . . . . . . .	L Near	 00000000 FLAT	External
+dwval  . . . . . . . . . . . . .	DWord	 00000003 _DATA	
+wtoaproc . . . . . . . . . . . .	L Near	 00000000 FLAT	External
+wval . . . . . . . . . . . . . .	Word	 00000001 _DATA	
+
+	   0 Warnings
+	   0 Errors
